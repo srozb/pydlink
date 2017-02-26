@@ -32,15 +32,16 @@ class Camera():
         else:
             l.error("Authentication failed.")
             return False
-    def checkName(self):
+    def getName(self):
         uri = self.__buildURI("/config/camera_info.cgi")
         r = Get(uri, self.auth, parse="common")
-        l.info("Connected to: {}, located at: {}".format(r['name'], r['location']))
+        l.info("Connected to: {}, located at: {}"\
+            .format(r['name'], r['location']))
         return r.values()
-    def checkSdcard(self):
+    def getSdcard(self):
         uri = self.__buildURI("/config/sdcard.cgi")
         r = Get(uri, self.auth, parse="common")
-        l.info("SDCard status: {}".format(r['status']))
+        l.info("SD card status: {}.".format(r['status']))
         if r['status'] == "invalid":
             return False
         else:
@@ -50,3 +51,51 @@ class Camera():
         jpeg = Get(uri, self.auth, parse="blob")
         l.info("Screenshot created. Size: {} bytes.".format(len(jpeg)))
         return jpeg
+    def getWirelessConfig(self):
+        uri = self.__buildURI("/config/wireless.cgi")
+        r = Get(uri, self.auth, parse="common")
+        l.info("Wireless state: {}. Mode: {}, essid: {} (ch:{}, {})."\
+            .format(r['enable'], r['mode'], r['essid'], r['channel'], r['auth'])
+            )
+        return r
+    def scanWifiAP(self):
+        uri=self.__buildURI("config/wlansurvey.cgi")
+        r = Get(uri, self.auth, parse=None)
+        l.debug("Detected WIFI APs: {}".format(r))
+        return r
+    def getICR(self):
+        uri = self.__buildURI("/config/icr.cgi")
+        r = Get(uri, self.auth, parse="common")
+        l.info("ICR mode: {}. Light threshold is set to {}.".format(r['mode'],
+            r['light_threshold']))
+        return r
+    def getLED(self):
+        uri = self.__buildURI("/config/led.cgi")
+        r = Get(uri, self.auth, parse="common")
+        l.info("Device control LED is {}.".format(r['led']))
+        return r
+    def getSpeaker(self):
+        uri = self.__buildURI("/config/speaker.cgi")
+        r = Get(uri, self.auth, parse="common")
+        l.info("Speaker enabled: {}. Volume: {}.".format(r['enable'],
+            r['volume']))
+        return r
+    def getAudioDetection(self):
+        uri = self.__buildURI("/config/audio_detection.cgi")
+        r = Get(uri, self.auth, parse="common")
+        l.info("Audio detection enabled: {}. Sensitivity: {}.".format(r['enable'],
+            r['sensitivity']))
+        return r
+    def getMotionDetection(self):
+        uri = self.__buildURI("/config/motion.cgi")
+        r = Get(uri, self.auth, parse="common")
+        l.info("Motion detection enabled: {}. Sensitivity: {}.".format(r['enable'],
+            r['sensitivity']))
+        return r
+    def getSensorInfo(self):
+        uri = self.__buildURI("/config/sensor.cgi")
+        r = Get(uri, self.auth, parse="common")
+        l.info("Sensor: BR: {}, CN: {}, ST:{}, WB:{}. Color: {}.".format(
+            r['brightness'], r['contrast'], r['saturation'], r['whitebalance'],
+            r['color']))
+        return r

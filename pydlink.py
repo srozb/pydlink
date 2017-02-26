@@ -2,7 +2,7 @@
 
 import sys
 from camera import Camera
-from imgrender import AnsiRender
+from imgrender import AnsiRender, SaveJpeg
 
 def banner():
     print("pydlink (c) 2017: @srozb")
@@ -16,13 +16,19 @@ def main():
     c = Camera(sys.argv[1], sys.argv[2])
     if not c.checkAuth():
         sys.exit(-2)
-    name, location = c.checkName()
-    c.checkSdcard()
+    name, location = c.getName()
+    c.getSdcard()
+    c.getWirelessConfig()
+    c.getICR()
+    c.getLED()
+    c.getSpeaker()
+    c.getAudioDetection()
+    c.getMotionDetection()
+    c.getSensorInfo()
     jpeg = c.getScreenshot()
-    with open('/tmp/temp.jpg', 'wb') as f:
-        f.write(jpeg)
-        f.flush()
-    AnsiRender('/tmp/temp.jpg')
+    filename = SaveJpeg(jpeg)
+    AnsiRender(filename)
+
 
 
 if __name__ == "__main__":
