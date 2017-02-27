@@ -3,7 +3,7 @@
 ## Main
 
 |HTTP endpoint|read parameters|write parameters|description|
-|-|-|-|-|
+|---|---|---|---|
 |`/config/user_mod.cgi`|?|name, password|user modify|
 |`/users/verify.cgi`|group||auth/role verification|
 |`/config/camera_info.cgi`|name, location|name, location|device identification|
@@ -16,7 +16,7 @@
 ## Wireless
 
 |HTTP endpoint|read parameters|write parameters|description|
-|-|-|-|-|
+|---|---|---|---|
 |`/config/wireless.cgi`|enable, mode, essid, chpatterns, channel, auth, encryption, passphrase|?|Wifi client settings|
 |`/config/wireless_ap.cgi`|enable, essid, security, key|?|Wifi access-point settings (default AP name & password)|
 |`/config/wlansurvey.cgi`|||wifi scanner|
@@ -24,7 +24,7 @@
 ## SD card
 
 |HTTP endpoint|read parameters|write parameters|description|
-|-|-|-|-|
+|---|---|---|---|
 |`/config/sdcard.cgi`|status, total, used, free||sdcard storage stats|
 |`/config/sdcard_list.cgi`|sd_status, path, page, pagesize, total_file, total_page, num, items|path||
 |`/config/sdcard_download.cgi`|path, file, result|path, file|download sdcard item|
@@ -34,7 +34,7 @@
 ## Sensors
 
 |HTTP endpoint|read parameters|write parameters|description|
-|-|-|-|-|
+|---|---|---|---|
 |`config/speaker.cgi`|enable, volume|enable, volume||
 |`/config/icr.cgi`|mode, light_threshold_list, light_threshold|mode, light_threshold_list, light_threshold|night/day toggle|
 |`/config/auto_pan.cgi`||act=go||
@@ -50,7 +50,7 @@
 ## Capture
 
 |HTTP endpoint|read parameters|write parameters|description|
-|-|-|-|-|
+|---|---|---|---|
 |`/image/jpeg.cgi`|-|-|Capture JPEG|
 |`/video/ACVS-H264.cgi`|-|profileid|Capture video stream|
 |`/audio/ACAS-AAC.cgi`|-|profileid|Capture audio stream|
@@ -59,7 +59,7 @@
 ## Lullaby
 
 |HTTP endpoint|read parameters|write parameters|description|
-|-|-|-|-|
+|---|---|---|---|
 |`/music/sys_music_play.cgi`|file, loop, shuffle, timer|file, loop, shuffle, timer|play a lullaby|
 |`/music/music_stop.cgi`|||stop playback|
 |`/music/sdcard_play.cgi`||file||
@@ -67,7 +67,7 @@
 ## Other
 
 |HTTP endpoint|read parameters|write parameters|description|
-|-|-|-|-|
+|---|---|---|---|
 |`/cgi/admin/recorder.cgi`|-|-||
 
 ## Other other...
